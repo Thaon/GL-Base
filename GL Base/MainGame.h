@@ -1,11 +1,3 @@
-#pragma once
-class MainGame
-{
-public:
-	MainGame();
-	~MainGame();
-};
-
 #ifndef MAINGAME_H
 #define MAINGAME_H
 
@@ -16,18 +8,21 @@ enum class GameState { PLAY, EXIT };
 class MainGame
 {
 public:
-	MainGame();
+	MainGame(const char* gameName);
 	~MainGame();
 
 	void Run();
+
 private:
 	void Init();
 	void ProcessInput();
 	void GameLoop();
 	void Draw();
 
-	Display m_gameDispplay;
+	Display m_gameDisplay;
 	GameState m_state;
+
+	const char* m_gameName;
 };
 
 #endif
