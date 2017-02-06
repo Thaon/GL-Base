@@ -2,6 +2,8 @@
 #define MAINGAME_H
 
 #include "Display.h"
+#include "Mesh.h"
+#include "Shader.h"
 
 enum class GameState { PLAY, EXIT };
 

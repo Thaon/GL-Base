@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\DevLib\SDL2-2.0.4\include;C:\DevLib\glew-2.0.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\DevLib\SDL2-2.0.4\include;C:\DevLib\glew-2.0.0\include;C:\DevLib\glm;$(IncludePath)</IncludePath>
     <LibraryPath>C:\DevLib\SDL2-2.0.4\lib\x86;C:\DevLib\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -147,11 +147,15 @@
   <ItemGroup>
     <ClInclude Include="Display.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

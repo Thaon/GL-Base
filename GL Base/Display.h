@@ -13,6 +13,8 @@ public:
 	~Display();
 
 	void InitDisplay(const char* title);
+	void ClearDisplay();
+
 	void SwapBuffer();
 
 private:

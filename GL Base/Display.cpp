@@ -10,6 +10,9 @@ Display::Display()
 
 Display::~Display()
 {
+	SDL_GL_DeleteContext(m_context);
+	SDL_DestroyWindow(m_window);
+	SDL_Quit();
 }
 
 void Display::ReturnError(std::string errorString)
@@ -42,4 +45,10 @@ void Display::InitDisplay(const char* title)
 		ReturnError("Glew could not be initialised");
 
 	glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
+}
+
+void Display::ClearDisplay()
+{
+	glClearDepth(1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

@@ -48,16 +48,21 @@ void MainGame::ProcessInput()
 
 void MainGame::Draw()
 {
-	glClearDepth(1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	m_gameDisplay.ClearDisplay();
+
+	Vertex vertices[] = {
+		Vertex(glm::vec3(-.5f, -.5f, 0)),
+		Vertex(glm::vec3(0, .5f, 0)),
+		Vertex(glm::vec3(.5f, -.5f, 0))
+	};
+
+	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
+	Shader shader("res/shaders/shader");
+	shader.Bind();
+	mesh.Draw();
 
 	// old code for testing only 
 	glEnableClientState(GL_COLOR_ARRAY);
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex2f(0, 0);
-	glVertex2f(0, 500);
-	glVertex2f(500, 500);
 	glEnd();
 
 	// SWAP BUFFER HERE
