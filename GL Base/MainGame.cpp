@@ -48,6 +48,85 @@ void MainGame::ProcessInput()
 				m_state = GameState::EXIT;
 			break;
 		}
+		float speed = .1f;
+		//move
+		if (event.type == SDL_KEYDOWN)
+		{
+			if (event.key.keysym.sym == SDLK_w)
+			{
+				for (auto model : m_scene)
+				{
+					model->Move(glm::vec3(0, speed, 0));
+				}
+			}
+			if (event.key.keysym.sym == SDLK_s)
+			{
+				for (auto model : m_scene)
+				{
+					model->Move(glm::vec3(0, -speed, 0));
+				}
+			}
+			if (event.key.keysym.sym == SDLK_a)
+			{
+				for (auto model : m_scene)
+				{
+					model->Move(glm::vec3(-speed, 0, 0));
+				}
+			}
+			if (event.key.keysym.sym == SDLK_d)
+			{
+				for (auto model : m_scene)
+				{
+					model->Move(glm::vec3(speed, 0, 0));
+				}
+			}
+			if (event.key.keysym.sym == SDLK_q)
+			{
+				for (auto model : m_scene)
+				{
+					model->Move(glm::vec3(0, 0, speed));
+				}
+			}
+			if (event.key.keysym.sym == SDLK_e)
+			{
+				for (auto model : m_scene)
+				{
+					model->Move(glm::vec3(0, 0, -speed));
+				}
+			}
+
+			//rotate
+			if (event.key.keysym.sym == SDLK_LEFT)
+			{
+				for (auto model : m_scene)
+				{
+					model->Rotate(-speed);
+				}
+			}
+			if (event.key.keysym.sym == SDLK_RIGHT)
+			{
+				for (auto model : m_scene)
+				{
+					model->Rotate(speed);
+				}
+			}
+
+			//scale
+			if (event.key.keysym.sym == SDLK_UP)
+			{
+				for (auto model : m_scene)
+				{
+					model->Scale(speed);
+				}
+			}
+			if (event.key.keysym.sym == SDLK_DOWN)
+			{
+				for (auto model : m_scene)
+				{
+					model->Scale(-speed);
+				}
+			}
+		}
 	}
 }
 

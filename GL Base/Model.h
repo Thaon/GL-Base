@@ -19,6 +19,10 @@ public:
 
 	void Draw();
 
+	void Move(glm::vec3 amount) { glTranslatef(amount.x, amount.y, amount.z); }
+	void Rotate(float angle) { glRotatef(angle, 0, 1, 0); }
+	void Scale(float amount) { glScalef(amount, amount, amount); }
+
 private:
 	std::string m_name;
 	Shader* m_shader;
