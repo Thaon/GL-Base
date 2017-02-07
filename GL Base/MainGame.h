@@ -2,8 +2,8 @@
 #define MAINGAME_H
 
 #include "Display.h"
-#include "Mesh.h"
-#include "Shader.h"
+#include "Model.h"
+#include <vector>
 
 enum class GameState { PLAY, EXIT };
 
@@ -13,10 +13,15 @@ public:
 	MainGame(const char* gameName);
 	~MainGame();
 
+	void Init();
+	
+	void CreateModel(std::string name);
+	Model& GetModel(std::string name);
+	Model& GetModel(int i);
+
 	void Run();
 
 private:
-	void Init();
 	void ProcessInput();
 	void GameLoop();
 	void Draw();
@@ -25,6 +30,8 @@ private:
 	GameState m_state;
 
 	const char* m_gameName;
+
+	std::vector<Model*> m_scene;
 };
 
 #endif

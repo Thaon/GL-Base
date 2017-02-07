@@ -8,7 +8,7 @@ class Shader
 {
 public:
 	Shader(const std::string& filename);
-
+	Shader();
 	void Bind(); //Set gpu to use our shaders
 
 	std::string LoadShader(const std::string& fileName);
@@ -23,7 +23,7 @@ private:
 	Shader(const Shader& other) {}
 
 	//http://en.cppreference.com/w/cpp/language/operators
-	void operator=(const Shader& other) {} //operator overloading REVIEW THIS!!!!!!!!!!!!!!!!!!
+	//void operator=(const Shader& other) {} //operator overloading REVIEW THIS!!!!!!!!!!!!!!!!!!
 
 	GLuint program; // Track the shader program
 	GLuint shaders[NUM_SHADERS]; //array of shaders

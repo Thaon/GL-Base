@@ -22,6 +22,10 @@ Shader::Shader(const std::string& filename)
 	}
 }
 
+Shader::Shader()
+{
+}
+
 Shader::~Shader()
 {
 	for (int i = 0; i < NUM_SHADERS; i++)

@@ -4,6 +4,11 @@
 #include <glm\glm.hpp>
 #include <GL\glew.h>
 
+//assimp integration from: http://www.mbsoftworks.sk/index.php?page=tutorials&series=1&tutorial=23
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>           // Output data structure
+#include <assimp/postprocess.h>     // Post processing fla
+
 class Vertex
 {
 public:
@@ -19,7 +24,8 @@ private:
 class Mesh
 {
 public:
-	Mesh(Vertex* vertices, unsigned int numVertices);
+	void SetupMesh(Vertex* vertices, unsigned int numVertices);
+	Mesh();
 	~Mesh();
 
 	void Draw();

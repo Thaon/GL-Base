@@ -6,15 +6,20 @@ MainGame::MainGame(const char* gameName)
 
 	m_state = GameState::PLAY;
 	m_gameDisplay = Display();
+	m_scene = std::vector<Model*>();
 }
 
 MainGame::~MainGame()
 {
+	for (auto model : m_scene)
+	{
+		if (model != nullptr)
+			delete model;
+	}
 }
 
 void MainGame::Run()
 {
-	Init();
 	GameLoop();
 }
 
@@ -50,16 +55,10 @@ void MainGame::Draw()
 {
 	m_gameDisplay.ClearDisplay();
 
-	Vertex vertices[] = {
-		Vertex(glm::vec3(-.5f, -.5f, 0)),
-		Vertex(glm::vec3(0, .5f, 0)),
-		Vertex(glm::vec3(.5f, -.5f, 0))
-	};
-
-	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
-	Shader shader("res/shaders/shader");
-	shader.Bind();
-	mesh.Draw();
+	for (auto model : m_scene)
+	{
+		model->Draw();
+	}
 
 	// old code for testing only 
 	glEnableClientState(GL_COLOR_ARRAY);
@@ -67,4 +66,29 @@ void MainGame::Draw()
 
 	// SWAP BUFFER HERE
 	m_gameDisplay.SwapBuffer();
+}
+
+void MainGame::CreateModel(std::string name)
+{
+	m_scene.push_back(new Model(name));
+	//setup model in here??
+}
+
+Model & MainGame::GetModel(std::string name)
+{
+	for (auto model : m_scene)
+	{
+		if (model->GetName() == name)
+		{
+			return *model;
+		}
+	}
+}
+
+Model & MainGame::GetModel(int i)
+{
+	if (i < m_scene.size())
+	{
+		return *m_scene[i];
+	}
 }

@@ -1,6 +1,6 @@
 #include "Mesh.h"
 
-Mesh::Mesh(Vertex* vertices, unsigned int numVertices)
+void Mesh::SetupMesh(Vertex* vertices, unsigned int numVertices)
 {
 	m_drawCount = numVertices;
 	glGenVertexArrays(1, &m_vertexArrayObject);
@@ -11,6 +11,10 @@ Mesh::Mesh(Vertex* vertices, unsigned int numVertices)
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glBindVertexArray(0);
+}
+
+Mesh::Mesh()
+{
 }
 
 
