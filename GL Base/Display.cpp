@@ -36,7 +36,7 @@ void Display::InitDisplay(const char* title)
 	m_context = SDL_GL_CreateContext(m_window);
 
 	//init glew
-	glewExperimental = true;
+	glewExperimental = GL_TRUE;
 	GLenum error = glewInit();
 	if (m_window == nullptr)
 		ReturnError("Window failed to be created");

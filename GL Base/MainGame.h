@@ -3,6 +3,7 @@
 
 #include "Display.h"
 #include "Model.h"
+#include "Input.h"
 #include <vector>
 
 enum class GameState { PLAY, EXIT };

@@ -26,6 +26,7 @@ void MainGame::Run()
 void MainGame::Init()
 {
 	m_gameDisplay.InitDisplay(m_gameName);
+	Input::Init();
 }
 
 void MainGame::GameLoop()
@@ -48,83 +49,83 @@ void MainGame::ProcessInput()
 				m_state = GameState::EXIT;
 			break;
 		}
+
+		Input::Update(event);
+
 		float speed = .1f;
 		//move
-		if (event.type == SDL_KEYDOWN)
+		if (Input::GetKeyDown(SDLK_w))
 		{
-			if (event.key.keysym.sym == SDLK_w)
+			for (auto model : m_scene)
 			{
-				for (auto model : m_scene)
-				{
-					model->Move(glm::vec3(0, speed, 0));
-				}
+				model->Move(glm::vec3(0, speed, 0));
 			}
-			if (event.key.keysym.sym == SDLK_s)
+		}
+		if (Input::GetKeyDown(SDLK_s))
+		{
+			for (auto model : m_scene)
 			{
-				for (auto model : m_scene)
-				{
-					model->Move(glm::vec3(0, -speed, 0));
-				}
+				model->Move(glm::vec3(0, -speed, 0));
 			}
-			if (event.key.keysym.sym == SDLK_a)
+		}
+		if (Input::GetKeyDown(SDLK_a))
+		{
+			for (auto model : m_scene)
 			{
-				for (auto model : m_scene)
-				{
-					model->Move(glm::vec3(-speed, 0, 0));
-				}
+				model->Move(glm::vec3(speed, 0, 0));
 			}
-			if (event.key.keysym.sym == SDLK_d)
+		}
+		if (Input::GetKeyDown(SDLK_d))
+		{
+			for (auto model : m_scene)
 			{
-				for (auto model : m_scene)
-				{
-					model->Move(glm::vec3(speed, 0, 0));
-				}
+				model->Move(glm::vec3(-speed, 0, 0));
 			}
-			if (event.key.keysym.sym == SDLK_q)
+		}
+		if (Input::GetKeyDown(SDLK_q))
+		{
+			for (auto model : m_scene)
 			{
-				for (auto model : m_scene)
-				{
-					model->Move(glm::vec3(0, 0, speed));
-				}
+				model->Move(glm::vec3(0, 0, speed));
 			}
-			if (event.key.keysym.sym == SDLK_e)
+		}
+		if (Input::GetKeyDown(SDLK_e))
+		{
+			for (auto model : m_scene)
 			{
-				for (auto model : m_scene)
-				{
-					model->Move(glm::vec3(0, 0, -speed));
-				}
+				model->Move(glm::vec3(0, 0, -speed));
 			}
+		}
 
 			//rotate
-			if (event.key.keysym.sym == SDLK_LEFT)
+		if (Input::GetKeyDown(SDLK_j))
+		{
+			for (auto model : m_scene)
 			{
-				for (auto model : m_scene)
-				{
-					model->Rotate(-speed);
-				}
+				model->Rotate(-1);
 			}
-			if (event.key.keysym.sym == SDLK_RIGHT)
+		}
+		if (Input::GetKeyDown(SDLK_l))
+		{
+			for (auto model : m_scene)
 			{
-				for (auto model : m_scene)
-				{
-					model->Rotate(speed);
-				}
+				model->Rotate(1);
 			}
+		}
 
 			//scale
-			if (event.key.keysym.sym == SDLK_UP)
+		if (Input::GetKeyDown(SDLK_i))
+		{
+			for (auto model : m_scene)
 			{
-				for (auto model : m_scene)
-				{
-					model->Scale(speed);
-				}
+				model->Scale(1+speed);
 			}
-			if (event.key.keysym.sym == SDLK_DOWN)
+		}
+		if (Input::GetKeyDown(SDLK_k))
+		{
+			for (auto model : m_scene)
 			{
-				for (auto model : m_scene)
-				{
-					model->Scale(-speed);
-				}
+				model->Scale(1-speed);
 			}
 		}
 	}
