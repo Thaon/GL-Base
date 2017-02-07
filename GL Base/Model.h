@@ -11,6 +11,7 @@ public:
 	Model(std::string name);
 	~Model();
 
+	void LoadModelFromFile(std::string filename);
 	void SetMeshData(Vertex* vertices, unsigned int numVertices);
 	void SetShader(std::string fileName);
 	void SetName(std::string name) { m_name = name; }

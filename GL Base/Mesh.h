@@ -1,29 +1,30 @@
 #ifndef MESH_H
 #define MESH_H
 
+#include <iostream>
+#include <vector>
 #include <glm\glm.hpp>
 #include <GL\glew.h>
 
-//assimp integration from: http://www.mbsoftworks.sk/index.php?page=tutorials&series=1&tutorial=23
-#include <assimp/Importer.hpp>      // C++ importer interface
-#include <assimp/scene.h>           // Output data structure
-#include <assimp/postprocess.h>     // Post processing fla
+#include <assimp/cimport.h>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 class Vertex
 {
 public:
-	Vertex(const glm::vec3& pos)
-	{
-		this->pos = pos;
-	}
+	Vertex() {}
+
+	glm::vec3 position;
 protected:
 private:
-	glm::vec3 pos;
 };
 
 class Mesh
 {
 public:
+	bool LoadModelFromFile(std::string filename);
+
 	void SetupMesh(Vertex* vertices, unsigned int numVertices);
 	Mesh();
 	~Mesh();
@@ -39,7 +40,16 @@ private:
 
 	GLuint m_vertexArrayObject;
 	GLuint m_vertexArrayBuffers[NUM_BUFFERS]; // create our array of buffers
-	unsigned int m_drawCount; //how much of the vertexArrayObject do we want to draw
+
+	GLuint m_VBO;
+	GLuint m_VAO;
+	GLuint m_ElementBuffer;
+	std::vector<int> indices;
+	std::vector<Vertex> verts;
+	unsigned int m_NumberOfVertices, m_NumberOfIndices; //how much of the vertexArrayObject do we want to draw
+
+	//taken from GP2 coursework at: https://github.com/OliverJayMorrison/GP-Coursework/blob/master/Dingleberry/src/MeshRenderer.cpp
+	void CopyVertexData(Vertex * pVerts, int numberOfVertices, int *indicesArray, int index);
 };
 
 

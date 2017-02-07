@@ -3,10 +3,12 @@
 
 Model::Model()
 {
+	m_mesh = new Mesh();
 }
 
 Model::Model(std::string name)
 {
+	m_mesh = new Mesh();
 	m_name = name;
 }
 
@@ -17,11 +19,15 @@ Model::~Model()
 	delete m_mesh;
 }
 
+void Model::LoadModelFromFile(std::string filename)
+{
+	m_mesh->LoadModelFromFile(filename);
+}
+
 void Model::SetMeshData(Vertex * vertices, unsigned int numVertices)
 {
 	m_vertsNumber = numVertices;
 	m_verts = vertices;
-	m_mesh = new Mesh();
 	m_mesh->SetupMesh(m_verts, m_vertsNumber);
 }
 
