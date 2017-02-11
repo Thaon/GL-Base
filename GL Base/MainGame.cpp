@@ -72,14 +72,14 @@ void MainGame::ProcessInput()
 		{
 			for (auto model : m_scene)
 			{
-				model->Move(glm::vec3(speed, 0, 0));
+				model->Move(glm::vec3(-speed, 0, 0));
 			}
 		}
 		if (Input::GetKeyDown(SDLK_d))
 		{
 			for (auto model : m_scene)
 			{
-				model->Move(glm::vec3(-speed, 0, 0));
+				model->Move(glm::vec3(speed, 0, 0));
 			}
 		}
 		if (Input::GetKeyDown(SDLK_q))
@@ -139,10 +139,6 @@ void MainGame::Draw()
 	{
 		model->Draw();
 	}
-
-	// old code for testing only 
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnd();
 
 	// SWAP BUFFER HERE
 	m_gameDisplay.SwapBuffer();
