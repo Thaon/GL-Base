@@ -3,6 +3,7 @@
 
 #include "Mesh.h"
 #include "Shader.h"
+#include "Texture.h"
 
 class Model
 {
@@ -17,6 +18,8 @@ public:
 	void SetName(std::string name) { m_name = name; }
 	std::string GetName() { return m_name; }
 
+	void SetTexture(Texture* texture);
+
 	void Draw();
 
 	void Move(glm::vec3 amount) { glTranslatef(amount.x, amount.y, amount.z); }
@@ -29,6 +32,8 @@ private:
 	Mesh* m_mesh;
 	int m_vertsNumber;
 	Vertex* m_verts;
+
+	Texture * m_texture;
 };
 
 #endif

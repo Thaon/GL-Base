@@ -4,6 +4,7 @@
 Model::Model()
 {
 	m_mesh = new Mesh();
+	m_texture = nullptr;
 }
 
 Model::Model(std::string name)
@@ -36,8 +37,14 @@ void Model::SetShader(std::string fileName)
 	m_shader = new Shader(fileName);
 }
 
+void Model::SetTexture(Texture* texture)
+{
+	m_texture = texture;
+}
+
 void Model::Draw()
 {
 	m_shader->Bind();
+	m_texture->Bind(0); //only draws albedo
 	m_mesh->Draw();
 }

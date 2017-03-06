@@ -7,11 +7,16 @@ Mesh::Mesh()
 	m_VAO = 0;
 
 	m_NumberOfVertices = 0;
+
+	indices = std::vector<int>();
+	verts = std::vector<Vertex>();
+	m_positions = std::vector<glm::vec3>();
+	m_textCoords = std::vector<glm::vec2>();
 }
 
 void Mesh::SetupMesh(Vertex* vertices, unsigned int numVertices)
 {
-	m_NumberOfVertices = numVertices;
+	/*m_NumberOfVertices = numVertices;
 	glGenVertexArrays(1, &m_vertexArrayObject);
 	glBindVertexArray(m_vertexArrayObject);
 	glGenBuffers(NUM_BUFFERS, m_vertexArrayBuffers);
@@ -19,7 +24,23 @@ void Mesh::SetupMesh(Vertex* vertices, unsigned int numVertices)
 	glBufferData(GL_ARRAY_BUFFER, numVertices * sizeof(vertices[0]), vertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	glBindVertexArray(0);
+	glBindVertexArray(0);*/
+
+	glGenBuffers(NUM_BUFFERS, m_vertexArrayBuffers); //generate our buffers based of our array of data/buffers - GLuint vertexArrayBuffers[NUM_BUFFERS];
+	glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[POSITION_VERTEXBUFFER]); //tell opengl what type of data the buffer is (GL_ARRAY_BUFFER), and pass the data
+	glBufferData(GL_ARRAY_BUFFER, numVertices * sizeof(m_positions[0]), &m_positions[0], GL_STATIC_DRAW); //move the data to the GPU - type of data, size of data, starting address (pointer) of data, where do we store the data on the GPU
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[TEXCOORD_VB]); //tell opengl what type of data the buffer is (GL_ARRAY_BUFFER), and pass the data
+	glBufferData(GL_ARRAY_BUFFER, numVertices * sizeof(m_textCoords[0]), &m_textCoords[0], GL_STATIC_DRAW); //move the data to the GPU - type of data, size of data, starting address (pointer) of data, where do we store the data on the GPU
+
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+	glBindVertexArray(0); // unbind our VAO
+
 }
 
 bool Mesh::LoadModelFromFile(std::string filename)
@@ -44,20 +65,26 @@ bool Mesh::LoadModelFromFile(std::string filename)
 			{
 				int index = face->mIndices[i];
 				indices.push_back(index);
+
+				Vertex ourV;
+
+				//get data and convert it to glm format
+				aiVector3D pos = mesh->mVertices[face->mIndices[i]];
+				glm::vec3 glmPos = glm::vec3(pos.x, pos.y, pos.z);
+				m_positions.push_back(glmPos);
+
+				aiVector3D uv = mesh->mTextureCoords[0][face->mIndices[i]];
+				glm::vec2 glmUV = glm::vec2(uv.x, uv.z);
+				m_textCoords.push_back(glmUV);
+
+				aiVector3D normal = mesh->mNormals[face->mIndices[i]];
+				glm::vec3 glmNormal = glm::vec3(normal.x, normal.y, normal.z);
+
+				ourV.position = glmPos;
+
+				verts.push_back(ourV);
 			}
 		}
-
-		for (int v = 0; v < mesh->mNumVertices; v++)
-		{
-			aiVector3D position = mesh->mVertices[v];
-
-			Vertex ourV;
-			ourV.position = glm::vec3(position.x, position.y, position.z);
-
-
-			verts.push_back(ourV);
-		}
-
 
 		CopyVertexData(&verts[0], verts.size(), &indices[0], indices.size());
 	}

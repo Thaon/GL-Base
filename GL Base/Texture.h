@@ -4,6 +4,7 @@
 //using CIMG from: http://gli.g-truc.net/0.8.2/index.html
 
 #include <GL/glew.h>
+#include <glm/glm.hpp>
 #include <iostream>
 
 #include <CImg.h>
@@ -26,6 +27,7 @@ public:
 private:
 	GLuint m_textureHandler;
 	CImg<unsigned char> m_image;
+	glm::vec2 m_textureCoords;
 };
 
 #endif

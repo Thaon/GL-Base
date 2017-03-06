@@ -12,6 +12,8 @@ Texture::Texture(const char * fileName)
 	{
 		std::cout << "could not load the image: " << fileName << std::endl;
 	}
+	else
+		CreateTexture();
 }
 
 

@@ -16,6 +16,8 @@ public:
 	Vertex() {}
 
 	glm::vec3 position;
+	glm::vec2 texCoord;
+	glm::vec3 normal;
 protected:
 private:
 };
@@ -35,6 +37,7 @@ private:
 	enum
 	{
 		POSITION_VERTEXBUFFER,
+		TEXCOORD_VB,
 		NUM_BUFFERS
 	};
 
@@ -46,6 +49,11 @@ private:
 	GLuint m_ElementBuffer;
 	std::vector<int> indices;
 	std::vector<Vertex> verts;
+
+	std::vector<glm::vec3> m_positions;
+	std::vector<glm::vec2> m_textCoords;
+
+
 	unsigned int m_NumberOfVertices, m_NumberOfIndices; //how much of the vertexArrayObject do we want to draw
 
 	//taken from GP2 coursework at: https://github.com/OliverJayMorrison/GP-Coursework/blob/master/Dingleberry/src/MeshRenderer.cpp
