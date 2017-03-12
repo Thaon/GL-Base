@@ -72,13 +72,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\DevLib\gli;C:\DevLib\SDL2-2.0.4\include;C:\DevLib\glew-2.0.0\include;C:\DevLib\glm;C:\DevLib\assimp\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\DevLib\SDL2-2.0.4\lib\x86;C:\DevLib\glew-2.0.0\lib\Release\Win32;C:\DevLib\assimp\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\DevLib\Simple OpenGL Image Library\src;C:\DevLib\SDL2-2.0.4\include;C:\DevLib\glew-2.0.0\include;C:\DevLib\glm;C:\DevLib\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\DevLib\Simple OpenGL Image Library\projects\VC9\x64\Debug;C:\DevLib\SDL2-2.0.4\lib\x64;C:\DevLib\glew-2.0.0\lib\Release\x64;C:\DevLib\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\DevLib\CImg-2.0.0_pre022017;C:\DevLib\SDL2-2.0.4\include;C:\DevLib\glew-2.0.0\include;C:\DevLib\glm;C:\DevLib\assimp\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\DevLib\SDL2-2.0.4\lib\x64;C:\DevLib\glew-2.0.0\lib\Release\x64;C:\DevLib\assimp\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\DevLib\Simple OpenGL Image Library\src;C:\DevLib\SDL2-2.0.4\include;C:\DevLib\glew-2.0.0\include;C:\DevLib\glm;C:\DevLib\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\DevLib\Simple OpenGL Image Library\projects\VC9\x64\Debug;C:\DevLib\SDL2-2.0.4\lib\x64;C:\DevLib\glew-2.0.0\lib\Release\x64;C:\DevLib\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -97,7 +97,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;assimp-vc140-mt.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,7 +111,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;assimp-vc140-mt.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

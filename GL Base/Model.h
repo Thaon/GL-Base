@@ -2,8 +2,9 @@
 #define MODEL_H
 
 #include "Mesh.h"
-#include "Shader.h"
-#include "Texture.h"
+
+#include <SOIL.h>
+
 
 class Model
 {
@@ -18,6 +19,10 @@ public:
 	void SetName(std::string name) { m_name = name; }
 	std::string GetName() { return m_name; }
 
+	void ProcessNode(aiNode* node, const aiScene* scene);
+	Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene);
+	std::vector<Texture> LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
+
 	void SetTexture(Texture* texture);
 
 	void Draw();
@@ -28,11 +33,16 @@ public:
 
 private:
 	std::string m_name;
+	std::string directory;
 	Shader* m_shader;
 	Mesh* m_mesh;
 	int m_vertsNumber;
 	Vertex* m_verts;
+	std::vector<Mesh> m_meshes;
 
+	GLint TextureFromFile(const char* path, std::string directory);
+
+	std::vector<Texture> textures_loaded;
 	Texture * m_texture;
 };
 

@@ -5,28 +5,23 @@
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
+#include <string>
 #include <iostream>
 
-#include <CImg.h>
-using namespace cimg_library;
+#include <SOIL.h>
 
 class Texture
 {
 public:
 	Texture();
-	Texture(const char * fileName);
 	~Texture();
 	
-	void CreateTexture();
-	void Bind(unsigned int unit);
-
-	int GetHeight() { return m_image.height(); }
-	int GetWidth() { return m_image.width(); }
-	CImg<unsigned char>* GetImage() { return &m_image; }
+	std::string m_name;
+	std::string type;
+	GLuint m_textureHandler;
+	std::string path;  // We store the path of the texture to compare with other textures
 
 private:
-	GLuint m_textureHandler;
-	CImg<unsigned char> m_image;
 	glm::vec2 m_textureCoords;
 };
 
