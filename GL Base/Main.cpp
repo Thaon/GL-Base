@@ -6,8 +6,7 @@ int main(int argc, char** argv)
 	game.Init();
 
 	game.CreateModel("Suit");
-	//game.GetModel(0).LoadModelFromFile("res/models/NanoSuit/nanosuit.obj");
-	game.GetModel(0).LoadModelFromFile("res/models/cabin.obj");
+	game.GetModel(0).LoadModelFromFile("res/models/NS2/nanosuit2.3ds");
 	game.GetModel("Suit").SetShader("res/shaders/shader");
 
 	game.Run();

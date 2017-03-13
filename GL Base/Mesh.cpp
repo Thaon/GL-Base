@@ -75,7 +75,7 @@ void Mesh::Draw(Shader* shader)
 		else if (name == "texture_specular")
 			number += specularNr++; // Transfer GLuint to stream
 
-		glUniform1f(glGetUniformLocation(shader->GetProgram(), ("material." + name + number).c_str()), i);
+		//glUniform1f(glGetUniformLocation(shader->GetProgram(), ("material." + name + number).c_str()), i);
 		glBindTexture(GL_TEXTURE_2D, this->textures[i].m_textureHandler);
 	}
 	glActiveTexture(GL_TEXTURE0);
